@@ -300,3 +300,63 @@ body::before {
         transform: scale(1)
     }
 }
+
+/* Toast container */
+/* #toast-container>div {
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+} */
+
+/* Success */
+.toast-success {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border: 1px solid #16a34a;
+    filter: drop-shadow(0px 0px 0px #16a34a);
+}
+
+/* Error */
+.toast-error {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    border: 1px solid #b91c1c;
+    filter: drop-shadow(0px 0px 0px #b91c1c);
+}
+
+/* Info */
+.toast-info {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border: 1px solid #1d4ed8;
+    filter: drop-shadow(0px 0px 0px #1d4ed8);
+}
+
+/* Warning */
+.toast-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border: 1px solid #d97706;
+    filter: drop-shadow(0px 0px 0px #d97706);
+}
+
+/* Progress bar */
+.toast-progress {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Close button */
+.toast-close-button {
+    color: #fff !important;
+    opacity: 0.8;
+}
+
+.toast-close-button:hover {
+    opacity: 1;
+}
+
+@media (min-width: 241px) and (max-width: 480px) {
+    #toast-container>div {
+        padding: 10px 10px 10px 47px;
+        width: 20em;
+    }
+}

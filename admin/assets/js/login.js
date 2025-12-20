@@ -1,4 +1,17 @@
-// 1. Password Visibility Toggle
+// toastr initialize
+toastr.options = {
+    "closeButton": true,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "timeOut": "3000",
+    "extendedTimeOut": "1000",
+    "showDuration": "300",
+    "hideDuration": "300",
+    "showEasing": "swing",
+    "hideEasing": "linear"
+};
+
+// Password Visibility Toggle
 const toggle = document.getElementById('togglePassword');
 const password = document.getElementById('password');
 
@@ -10,6 +23,7 @@ toggle.addEventListener('click', () => {
     toggle.classList.toggle('fa-eye');
 });
 
+// For Water eipples effect
 $(function () {
 
     if (typeof $.fn.ripples !== 'function') {
@@ -43,6 +57,7 @@ $(function () {
 
 });
 
+// Login function ajax
 $(document).ready(function () {
     $("#logIn").on("submit", function (e) {
         e.preventDefault();
@@ -65,14 +80,19 @@ $(document).ready(function () {
                 console.log(response);
                 let status = response.status;
                 if (status == 1) {
-                    alert("LogIn successfully!");
-                    window.location.href = "dashboard.php";
+                    // alert("LogIn successfully!");
+                    toastr.success("Log in successfully.");
+                    setTimeout(() => {
+                        window.location.href = "dashboard.php";
+                    }, 500);
                 } else {
-                    alert("Incorrect Username or Password!");
+                    // alert("Incorrect Username or Password!");
+                    toastr.error("Incorrect Username or Password!");
                 }
             },
             error: function () {
-                alert("Something went wrong!");
+                // alert("Something went wrong!");
+                toastr.error("Something went wrong, Try again!");
             }
         });
     });
