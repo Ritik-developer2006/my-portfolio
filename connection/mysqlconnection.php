@@ -2,8 +2,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 
-require_once '../config/env.php';
-loadEnv('../.env');
+require_once(__DIR__ . '../../config/env.php');
+loadEnv(__DIR__ . '../../.env');
 
 abstract class mySQL
 {
