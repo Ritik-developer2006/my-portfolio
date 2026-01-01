@@ -3,6 +3,7 @@ require_once("header.php");
 ?>
 <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet">
 <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 <style>
     .filepond--credits {
@@ -58,7 +59,7 @@ require_once("header.php");
 <!-- main content start -->
 <div class="main-content">
     <div class="dashboard-breadcrumb mb-25 border shadow">
-        <h2>Front Page Details</h2>
+        <h2>Projects Section</h2>
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -66,11 +67,11 @@ require_once("header.php");
             <div class="panel mb-25 border shadow">
                 <div class="panel-header d-flex justify-content-between">
                     <div>
-                        <h5 class="fw-bold">Menus</h5>
+                        <h5 class="fw-bold">Categories</h5>
                     </div>
                     <div><i class="fa-solid fa-circle-plus" id="add_education" style="cursor: pointer"></i></div>
                 </div>
-                <div class="panel-body d-flex justify-content-center align-items-center gap-3" id="menu_container" style="min-height: auto;">
+                <div class="panel-body d-flex justify-content-center align-items-center gap-3" id="category_container" style="min-height: auto;">
                     <!-- data come through ajax -->
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <div>
@@ -88,33 +89,11 @@ require_once("header.php");
             <div class="panel mb-25 border shadow">
                 <div class="panel-header d-flex justify-content-between">
                     <div>
-                        <h5 class="fw-bold">All Sliders Name</h5>
+                        <h5 class="fw-bold">All Projects</h5>
                     </div>
                     <div><i class="fa-solid fa-circle-plus"></i></div>
                 </div>
-                <div class="panel-body d-flex flex-column justify-content-center align-items-center" id="slider_container">
-                    <!-- data come through ajax -->
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <div>
-                            <i class="fa-solid fa-circle-info fs-1"></i>
-                        </div>
-                        <div>
-                            <h5>Data Not Available!</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <!-- All Experinces -->
-            <div class="panel mb-25 border shadow">
-                <div class="panel-header d-flex justify-content-between">
-                    <div>
-                        <h5 class="fw-bold">Logo & Background Image</h5>
-                    </div>
-                    <div><i class="fa-solid fa-circle-plus"></i></div>
-                </div>
-                <div class="panel-body d-flex flex-column justify-content-center align-items-center" id="utility_container">
+                <div class="panel-body d-flex flex-column justify-content-center align-items-center" id="project_container">
                     <!-- data come through ajax -->
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <div>
@@ -135,8 +114,17 @@ require_once("header.php");
     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
+        function initSelect2() {
+            $('.select2').select2({
+                width: '100%',
+                placeholder: '--Select Category--',
+                allowClear: true
+            });
+        }
+
         function uploadFile() {
 
             FilePond.registerPlugin(FilePondPluginFileValidateType, FilePondPluginImagePreview);
@@ -161,15 +149,15 @@ require_once("header.php");
             });
         }
 
-        getAllMenu();
+        getCategories();
 
-        function getAllMenu() {
+        function getCategories() {
             $.ajax({
                 type: 'POST',
                 url: '/API/adminApi.php',
                 dataType: 'JSON',
                 data: JSON.stringify({
-                    method: 'getAllMenu'
+                    method: 'getProjectFilter'
                 }),
                 contentType: "application/json",
                 beforeSend: function() {
@@ -198,12 +186,12 @@ require_once("header.php");
                                             <form method="post" action="#">
                                                 <div class="row g-3">
                                                     <div class="col-sm-12">
-                                                        <label for="name${item.id}" class="form-label">Menu Name</label>
+                                                        <label for="university${item.id}" class="form-label">Category Name</label>
                                                         <div class="input-group-with-icon">
                                                             <span class="input-icon" style="border-right: 1px solid #e5e5e5;">
                                                                 <i class="fa-solid fa-pen-nib"></i>
                                                             </span>
-                                                            <input type="text" readonly name='name' value="${item.name}" class="form-control ps-2" id="name${item.id}" placeholder="Your university">
+                                                            <input type="text" readonly name='university' value="${item.name}" class="form-control ps-2" id="university${item.id}" placeholder="Your university">
                                                         </div>
                                                     </div>
 
@@ -215,9 +203,10 @@ require_once("header.php");
                                         </div>
                                     </div>`;
                             });
-                            $("#menu_container").removeClass("justify-content-center");
-                            $("#menu_container").html(html);
+                            $("#category_container").removeClass("justify-content-center");
+                            $("#category_container").html(html);
                         }
+
                     }
                 },
                 error: function() {
@@ -226,15 +215,13 @@ require_once("header.php");
             });
         };
 
-        getAllSlider();
-
-        function getAllSlider() {
+        function getAllCategories() {
             $.ajax({
                 type: 'POST',
                 url: '/API/adminApi.php',
                 dataType: 'JSON',
                 data: JSON.stringify({
-                    method: 'getAllSlider'
+                    method: 'getProjectFilter'
                 }),
                 contentType: "application/json",
                 beforeSend: function() {
@@ -249,39 +236,11 @@ require_once("header.php");
                     if (status == 1) {
                         let html = "";
                         if (response.data.length > 0) {
+                            html += `<option value="">--Select Category--</option>`;
                             $.each(response.data, function(index, item) {
-                                html += `<div class="card">
-                                        <div class="card-header d-flex justify-content-between">
-                                            <div>${item.name}</div>
-                                            <div>
-                                            <i class="fa-solid fa-pen-to-square edit_education" style="cursor: pointer;"></i>
-                                            <i class="fa-solid fa-trash delete_education text-danger" style="cursor: pointer;"></i>
-                                            </div>
-                                            <input type="hidden" value="${item.id}" class="edu_id">
-                                        </div>
-                                        <div class="card-body">
-                                            <form method="post" action="#">
-                                                <div class="row g-3">
-                                                    <div class="col-sm-12">
-                                                        <label for="name${item.id}" class="form-label">Menu Name</label>
-                                                        <div class="input-group-with-icon">
-                                                            <span class="input-icon" style="border-right: 1px solid #e5e5e5;">
-                                                                <i class="fa-solid fa-pen-nib"></i>
-                                                            </span>
-                                                            <input type="text" readonly name='name' value="${item.name}" class="form-control ps-2" id="name${item.id}" placeholder="Your university">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-12 d-none">
-                                                        <button class="btn btn-sm btn-primary" type="submit">Update</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>`;
+                                html += `<option value="${item.id}">${item.name}</option>`;
                             });
-                            $("#slider_container").removeClass("justify-content-center");
-                            $("#slider_container").html(html);
+                            $(".project_category").html(html);
                         }
                     }
                 },
@@ -291,15 +250,15 @@ require_once("header.php");
             });
         };
 
-        getLogoBck();
+        getAllProjects();
 
-        function getLogoBck() {
+        function getAllProjects() {
             $.ajax({
                 type: 'POST',
                 url: '/API/adminApi.php',
                 dataType: 'JSON',
                 data: JSON.stringify({
-                    method: 'getLogoBck'
+                    method: 'getAllProject'
                 }),
                 contentType: "application/json",
                 beforeSend: function() {
@@ -327,35 +286,57 @@ require_once("header.php");
                                         <div class="card-body">
                                             <form method="post" action="#">
                                                 <div class="row g-3">
-
-                                                    <div class="col-lg-6 d-flex gap-4">
-                                                        <div>
-                                                            <label for="logo${item.id}" class="form-label">Prev. Image</label>
-                                                            <div class="">
-                                                                <img src="../img/${item.logo}" width="150" class="border">
-                                                            </div>
+                                                    <div class="col-sm-6">
+                                                        <label for="job_title${item.id}" class="form-label">Input with icon</label>
+                                                        <div class="input-group-with-icon">
+                                                            <span class="input-icon" style="border-right: 1px solid #e5e5e5;">
+                                                                <i class="fa-solid fa-pen-nib"></i>
+                                                            </span>
+                                                            <input type="text" readonly name='job_title' value="${item.project_name}" class="form-control ps-2" id="job_title${item.id}" placeholder="Your college">
                                                         </div>
-                                                        <div class="flex-fill">
-                                                            <label class="form-label" for="logo${item.id}">New Image
-                                                            </label>
-                                                            <input type="text" id="logo${item.id}" class="singleUpload">
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <label for="company_name${item.id}" class="form-label">Input with icon</label>
+                                                        <div class="input-group-with-icon">
+                                                            <span class="input-icon" style="border-right: 1px solid #e5e5e5;">
+                                                                <i class="fa-solid fa-pen-nib"></i>
+                                                            </span>
+                                                            <input type="text" readonly name='company_name' value="${item.link}" class="form-control ps-2" id="company_name${item.id}" placeholder="Company Name">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6 d-flex gap-4">
                                                         <div>
-                                                            <label for="bck_img${item.id}" class="form-label">Prev. Image</label>
+                                                            <label for="icon${item.id}" class="form-label">Prev. Image</label>
                                                             <div class="">
-                                                                <img src="../img/${item.bck_img}" width="150" class="border">
+                                                                <img src="../img/${item.images}" width="150" class="border">
                                                             </div>
                                                         </div>
                                                         <div class="flex-fill">
-                                                            <label class="form-label" for="bck_img${item.id}">New Image
+                                                            <label class="form-label" for="image${item.id}">New Image
                                                             </label>
-                                                            <input type="text" id="bck_img${item.id}" class="singleUpload">
+                                                            <input type="text" id="image${item.id}" class="singleUpload">
                                                         </div>
                                                     </div>
-                                    
+
+                                                    <div class="col-sm-6">
+                                                        <label for="job_title${item.id}" class="form-label">Category</label>
+                                                        <div class="input-group-with-icon">
+                                                            <span class="input-icon" style="border-right: 1px solid #e5e5e5;">
+                                                                <i class="fa-solid fa-pen-nib"></i>
+                                                            </span>
+                                                            <select name='project_category' class="form-control ps-2 project_category select2">
+                                                                <option>--Select Category--</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-sm-12">
+                                                        <label for="ex_description${item.id}" class="form-label">Example textarea</label>
+                                                        <textarea class="form-control" readonly rows="5" name="description" id="ex_description${item.id}">${item.description}</textarea>
+                                                    </div>
+
                                                     <div class="col-sm-12 d-none">
                                                         <button class="btn btn-sm btn-primary" type="submit">Update</button>
                                                     </div>
@@ -364,9 +345,10 @@ require_once("header.php");
                                         </div>
                                     </div>`;
                             });
-                            $("#utility_container").html(html);
+                            $("#project_container").html(html);
                             getAllCategories();
                             uploadFile();
+                            initSelect2();
                         }
                     }
                 },

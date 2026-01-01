@@ -41,11 +41,12 @@ include_once("header.php");
   </div>
   <div class="container text-center" style="
     position: sticky;
-    bottom: 0px; color: #ffff">
-    <?php 
-      $year = date("Y");
+    bottom: 0px; color: #ffff;
+    z-index: 15;">
+    <?php
+    $year = date("Y");
     ?>
-    © <?php echo $year; ?> RITIK KUMAR | All Rights Reserved | Personal Portfolio Website Design
+    © <?php echo $year; ?> RITIK KUMAR | All Rights Reserved | Personal Portfolio Website - Web Hosting By - <a href="https://trendtech.in/" target="_blank" style="color: #009e66; font-weight: 700;">Trend Tech</a>
   </div>
 </section>
 <!-- About lightbox-->
@@ -133,6 +134,9 @@ include_once("header.php");
                     <?php echo $sd['icon']; ?>
                     <h6 class="service-title"><?php echo $sd['heading']; ?></h6>
                     <p class="service-description"><?php echo $sd['description']; ?></p>
+                    <span class="see-more text-primary" style="cursor:pointer;">
+                      See more
+                    </span>
                   </div>
                 </div>
               <?php } ?>
@@ -189,6 +193,9 @@ include_once("header.php");
                       </div><i class="icon ion-md-quote review-icon"></i>
                     </div>
                     <p class="review-content"><?php echo $td['description']; ?></p>
+                    <span class="see-more text-primary" style="cursor:pointer;">
+                      See more
+                    </span>
                   </div>
                 </div>
               <?php } ?>
@@ -231,6 +238,9 @@ include_once("header.php");
                     <div class="resume-item"><span class="item-arrow"></span>
                       <h5 class="item-title"><?php echo $ed['education_name']; ?></h5><span class="item-details"><?php echo $ed['university'] . ' / ' . $ed['from_year'] . ' - ' . $ed['to_year']; ?></span>
                       <p class="item-description"><?php echo $ed['description']; ?></p>
+                      <span class="see-more text-primary" style="cursor:pointer;">
+                        See more
+                      </span>
                     </div>
                   <?php } ?>
                 </div>
@@ -243,6 +253,9 @@ include_once("header.php");
                     <div class="resume-item"><span class="item-arrow"></span>
                       <h5 class="item-title"><?php echo $exd['job_title']; ?></h5><span class="item-details"><?php echo $exd['company_name'] . ' / ' . $exd['from_year'] . ' - ' . $exd['to_year']; ?></span>
                       <p class="item-description"><?php echo $exd['description']; ?></p>
+                      <span class="see-more text-primary" style="cursor:pointer;">
+                        See more
+                      </span>
                     </div>
                   <?php } ?>
                 </div>
@@ -278,11 +291,8 @@ include_once("header.php");
             <div class="row align-items-center">
               <div class="col-12 col-lg-6 content-part">
                 <h3 class="video-title">Take a tour of my office</h3>
-                <p class="video-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia cum quasi
-                  assumenda culpa praesentium consectetur voluptatibus expedita. Voluptatem tempore, aspernatur rem
-                  facilis, distinctio nemo! Odio velit, nemo dolorem voluptas!</p>
-                <p class="video-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium qui
-                  aspernatur unde mollitia, in laborum.</p>
+                <p class="video-description">Welcome to my workspace — a place where ideas turn into functional and creative digital solutions. My office is designed to keep productivity high while maintaining a calm and comfortable environment. From a well-organized desk setup to the tools I use daily.</p>
+                <p class="video-description">This space reflects my work culture: simple, efficient, and technology-driven.</p>
               </div>
               <div class="col-12 col-lg-6 video-part"><a class="media-lightbox"
                   href="https://www.youtube.com/watch?v=doteMqP6eSc" data-lightbox>
@@ -323,74 +333,16 @@ include_once("header.php");
               <div class="col-12">
                 <ul class="list-inline filter-control" role="group" aria-label="Filter Control">
                   <li class="list-inline-item tab-active" data-filter="*">All</li>
-                  <li class="list-inline-item" data-filter=".live">Live</li>
-                  <li class="list-inline-item" data-filter=".github">GitHub</li>
-                  <li class="list-inline-item" data-filter=".frontend">Frontend</li>
+                  <li class="list-inline-item" data-filter=".Live">Live</li>
+                  <li class="list-inline-item" data-filter=".Github">GitHub</li>
+                  <li class="list-inline-item" data-filter=".Frontend">Frontend</li>
                 </ul>
               </div>
             </div>
             <!-- Thumbnail list-->
-            <div class="portfolio-grid row">
+            <div class="portfolio-grid row" id="portfolio-grid" style="height: auto !important;">
               <!-- Single item-->
-              <div class="single-item col-6 col-lg-4 live">
-                <a class="portfolio-item" href="#">
-                  <div class="portfolio-wrapper"><img class="img-fluid" alt="Item" src="img/item-1.jpg">
-                    <div class="item-content">
-                      <h6 class="content-title">Label Tag Mockup</h6><span class="content-more">More Info</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <!-- Single item-->
-              <div class="single-item col-6 col-lg-4 github">
-                <a class="portfolio-item" href="#">
-                  <div class="portfolio-wrapper"><img class="img-fluid" alt="Item" src="img/item-2.jpg">
-                    <div class="item-content">
-                      <h6 class="content-title">3D Bag Mockup</h6><span class="content-more">More Info</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <!-- Single item-->
-              <div class="single-item col-6 col-lg-4 live">
-                <a class="portfolio-item" href="#">
-                  <div class="portfolio-wrapper"><img class="img-fluid" alt="Item" src="img/item-3.jpg">
-                    <div class="item-content">
-                      <h6 class="content-title">Modern Bag Design</h6><span class="content-more">More Info</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <!-- Single item-->
-              <div class="single-item col-6 col-lg-4 frontend">
-                <a class="portfolio-item" href="#">
-                  <div class="portfolio-wrapper"><img class="img-fluid" alt="Item" src="img/item-4.jpg">
-                    <div class="item-content">
-                      <h6 class="content-title">Coffee Cup Design</h6><span class="content-more">More Info</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <!-- Single item-->
-              <div class="single-item col-6 col-lg-4 frontend">
-                <a class="portfolio-item" href="#">
-                  <div class="portfolio-wrapper"><img class="img-fluid" alt="Item" src="img/item-5.jpg">
-                    <div class="item-content">
-                      <h6 class="content-title">T-Shirt Design</h6><span class="content-more">More Info</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <!-- Single item-->
-              <div class="single-item col-6 col-lg-4 github">
-                <a class="portfolio-item" href="#">
-                  <div class="portfolio-wrapper"><img class="img-fluid" alt="Item" src="img/item-6.jpg">
-                    <div class="item-content">
-                      <h6 class="content-title">Packaging Box Mockup</h6><span class="content-more">More Info</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
+              <!-- Content loaded by Ajax -->
             </div>
           </div>
         </div>
@@ -418,78 +370,9 @@ include_once("header.php");
           </div>
           <!-- Blog section-->
           <div class="blog-section single-section">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center" id="all_blog_container">
               <!-- Single post-->
-              <div class="col-12 col-sm-8 col-lg-4">
-                <div class="card single-post"><a class="post-img" href="#0"><img class="card-img-top"
-                      src="img/post-1.jpg" alt="Blog post"><span class="content-date">11 Dec, 20</span></a>
-                  <div class="card-body post-content"><a href="#0">
-                      <h5 class="card-title content-title">Top tools for Photographers</h5>
-                    </a>
-                    <p class="card-text content-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Dolore, porro rem quod illo quam, eum alias id, repellendus magni, quas.</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Single post-->
-              <div class="col-12 col-sm-8 col-lg-4">
-                <div class="card single-post"><a class="post-img" href="#0"><img class="card-img-top"
-                      src="img/post-2.jpg" alt="Blog post"><span class="content-date">12 Aug, 20</span></a>
-                  <div class="card-body post-content"><a href="#0">
-                      <h5 class="card-title content-title">Take a tour of my office</h5>
-                    </a>
-                    <p class="card-text content-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Dolore, porro rem quod illo quam, eum alias id, repellendus magni, quas.</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Single post-->
-              <div class="col-12 col-sm-8 col-lg-4">
-                <div class="card single-post"><a class="post-img" href="#0"><img class="card-img-top"
-                      src="img/post-3.jpg" alt="Blog post"><span class="content-date">4 Feb, 20</span></a>
-                  <div class="card-body post-content"><a href="#0">
-                      <h5 class="card-title content-title">How i became a Web Designer</h5>
-                    </a>
-                    <p class="card-text content-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Dolore, porro rem quod illo quam, eum alias id, repellendus magni, quas.</p>
-                  </div>
-                </div>
-              </div><!-- Single post-->
-              <div class="col-12 col-sm-8 col-lg-4">
-                <div class="card single-post"><a class="post-img" href="#0"><img class="card-img-top"
-                      src="img/post-4.jpg" alt="Blog post"><span class="content-date">11 Dec, 19</span></a>
-                  <div class="card-body post-content"><a href="#0">
-                      <h5 class="card-title content-title">How to improve work performance</h5>
-                    </a>
-                    <p class="card-text content-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Dolore, porro rem quod illo quam, eum alias id, repellendus magni, quas.</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Single post-->
-              <div class="col-12 col-sm-8 col-lg-4">
-                <div class="card single-post"><a class="post-img" href="#0"><img class="card-img-top"
-                      src="img/post-5.jpg" alt="Blog post"><span class="content-date">15 Nov, 19</span></a>
-                  <div class="card-body post-content"><a href="#0">
-                      <h5 class="card-title content-title">How to work from home</h5>
-                    </a>
-                    <p class="card-text content-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Dolore, porro rem quod illo quam, eum alias id, repellendus magni, quas.</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Single post-->
-              <div class="col-12 col-sm-8 col-lg-4">
-                <div class="card single-post"><a class="post-img" href="#0"><img class="card-img-top"
-                      src="img/post-6.jpg" alt="Blog post"><span class="content-date">8 Aug, 19</span></a>
-                  <div class="card-body post-content"><a href="#0">
-                      <h5 class="card-title content-title">How to enjoy your business trip</h5>
-                    </a>
-                    <p class="card-text content-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Dolore, porro rem quod illo quam, eum alias id, repellendus magni, quas.</p>
-                  </div>
-                </div>
-              </div>
+              <!-- All blogs comes throgh ajax -->
             </div>
           </div>
         </div>
@@ -681,60 +564,46 @@ include_once("header.php");
   </div>
 </div>
 
-<!-- jQuery first -->
-<script src="js/jquery.min.js"></script>
+<div class="modal fade" id="yourProject" style="z-index: 9999999; backdrop-filter: blur(5px); padding-left: unset;">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content" style="background-color: #101010; filter: drop-shadow(0px 0px 2px #009e66);">
+      <div class="modal-header" style="border-bottom: 1px solid #009e66;">
+        <h5 class="modal-title project_title">Project Detail</h5>
+        <a href="#" type="button" class="close" data-dismiss="modal" style="color: white;font-weight: 100;">X</a>
+      </div>
+      <div class="modal-body">
+       <div class="contact-section single-section" id="project_container">
+          <div class="row">
+            <div class="col-12" id="your_project">
+              <!-- data come through ajax -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- Bootstrap & other plugins -->
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/imagesloaded.pkgd.min.js"></script>
-<script src="js/isotope.pkgd.min.js"></script>
-<script src="js/animatedModal.js"></script>
-<script src="js/tiny-slider.js"></script>
-<script src="js/lity.min.js"></script>
-<script src="js/simplebar.min.js"></script>
-<script src="js/jquery.mb.YTPlayer.min.js"></script>
 
-<!-- Your main JS -->
-<script src="js/main.js"></script>
-
-<!-- Customizer (optional) -->
-<script src="customizer/main.js"></script>
-
-<!-- Your custom JS -->
-<script src="js/custom.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery.ripples@0.6.3/dist/jquery.ripples.min.js"></script>
-<script>
-  $(function() {
-
-    if (typeof $.fn.ripples !== 'function') {
-      console.error('Ripples plugin still not available');
-      return;
-    }
-
-    const $body = $('body');
-
-    $body.ripples({
-      resolution: 600,
-      dropRadius: 25,
-      perturbance: 0.04
-    });
-
-    // Auto waves
-    // setInterval(() => {
-    //   $body.ripples(
-    //     'drop',
-    //     Math.random() * window.innerWidth,
-    //     Math.random() * window.innerHeight,
-    //     30,
-    //     0.03
-    //   );
-    // }, 2500);
-
-    // Click waves
-    $body.on('click', e => {
-      $body.ripples('drop', e.pageX, e.pageY, 40, 0.04);
-    });
-
-  });
-</script>
-</html>
+<div class="modal fade" id="yourBlog" style="z-index: 9999999; backdrop-filter: blur(5px); padding-left: unset;">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content" style="background-color: #101010; filter: drop-shadow(0px 0px 2px #009e66);">
+      <div class="modal-header" style="border-bottom: 1px solid #009e66;">
+        <h5 class="modal-title" id="blog_title">Blog Detail</h5>
+        <a href="#" type="button" class="close" data-dismiss="modal" style="color: white;font-weight: 100;">X</a>
+      </div>
+      <div class="modal-body">
+        <div class="contact-section single-section" id="blog_container">
+          <div class="row">
+            <div class="col-12" id="your_blog">
+              <!-- data come through ajax -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
+  include("footer.php")
+?>

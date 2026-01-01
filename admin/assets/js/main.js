@@ -156,9 +156,9 @@
                 toggleFullscreen();
                 $(this).toggleClass('full-screen');
                 if ($(this).hasClass('full-screen')) {
-                    $(this).html('<i class="fa-light fa-compress"></i>');
+                    $(this).html('<i class="fa-solid fa-compress"></i>');
                 } else {
-                    $(this).html('<i class="fa-light fa-expand"></i>');
+                    $(this).html('<i class="fa-solid fa-expand"></i>');
                 }
             });
         }
@@ -792,7 +792,7 @@
                 }
             }
         });
-        $('.sidebar-link.').parent().hover(function () {
+        $('.sidebar-link').parent().hover(function () {
             $(this).children('.sidebar-dropdown-menu').toggleClass('show');
         });
         $(".sidebar-menu .active").parent().parents(".sidebar-dropdown-menu").show().siblings().addClass("show");

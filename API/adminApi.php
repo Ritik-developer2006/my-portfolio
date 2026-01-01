@@ -402,7 +402,7 @@ class AdminApi
     public function getAllProject()
     {
         $smslink = $this->connect_to_mysqlsms();
-        $stmt = $smslink->prepare("SELECT * FROM tbl_project");
+        $stmt = $smslink->prepare("SELECT tp.*,tf.name FROM tbl_project as tp LEFT JOIN tbl_data_filter as tf on tf.id = tp.data_filter_id");
 
         if (!$stmt->execute()) {
             echo json_encode([
@@ -558,6 +558,161 @@ class AdminApi
     {
         $smslink = $this->connect_to_mysqlsms();
         $stmt = $smslink->prepare("SELECT * FROM tbl_blogs");
+
+        if (!$stmt->execute()) {
+            echo json_encode([
+                'status' => 0,
+                'msg' => 'Query execution failed'
+            ]);
+            die;
+        }
+
+        $result = $stmt->get_result();
+        $data = [];
+        // print_r($result);
+        // die;
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        echo json_encode([
+            'status' => 1,
+            'msg' => 'Blog record fetched successfully',
+            'data' => $data
+        ]);
+        die;
+    }
+
+    // Fetch Single Menu Details records
+    public function getSingleMenu($id)
+    {
+        $smslink = $this->connect_to_mysqlsms();
+        $stmt = $smslink->prepare("SELECT * FROM tbl_menu where id='$id'");
+
+        if (!$stmt->execute()) {
+            echo json_encode([
+                'status' => 0,
+                'msg' => 'Query execution failed'
+            ]);
+            die;
+        }
+
+        $result = $stmt->get_result();
+        $data = [];
+        // print_r($result);
+        // die;
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        echo json_encode([
+            'status' => 1,
+            'msg' => 'Blog record fetched successfully',
+            'data' => $data
+        ]);
+        die;
+    }
+
+    // Fetch All Menu Details records
+    public function getAllMenu()
+    {
+        $smslink = $this->connect_to_mysqlsms();
+        $stmt = $smslink->prepare("SELECT * FROM tbl_menu");
+
+        if (!$stmt->execute()) {
+            echo json_encode([
+                'status' => 0,
+                'msg' => 'Query execution failed'
+            ]);
+            die;
+        }
+
+        $result = $stmt->get_result();
+        $data = [];
+        // print_r($result);
+        // die;
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        echo json_encode([
+            'status' => 1,
+            'msg' => 'Blog record fetched successfully',
+            'data' => $data
+        ]);
+        die;
+    }
+
+    // Fetch Single Sliders Details records
+    public function getSingleSlider($id)
+    {
+        $smslink = $this->connect_to_mysqlsms();
+        $stmt = $smslink->prepare("SELECT * FROM tbl_sliders_name where id='$id'");
+
+        if (!$stmt->execute()) {
+            echo json_encode([
+                'status' => 0,
+                'msg' => 'Query execution failed'
+            ]);
+            die;
+        }
+
+        $result = $stmt->get_result();
+        $data = [];
+        // print_r($result);
+        // die;
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        echo json_encode([
+            'status' => 1,
+            'msg' => 'Blog record fetched successfully',
+            'data' => $data
+        ]);
+        die;
+    }
+
+    // Fetch All Sliders Details records
+    public function getAllSlider()
+    {
+        $smslink = $this->connect_to_mysqlsms();
+        $stmt = $smslink->prepare("SELECT * FROM tbl_sliders_name");
+
+        if (!$stmt->execute()) {
+            echo json_encode([
+                'status' => 0,
+                'msg' => 'Query execution failed'
+            ]);
+            die;
+        }
+
+        $result = $stmt->get_result();
+        $data = [];
+        // print_r($result);
+        // die;
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        echo json_encode([
+            'status' => 1,
+            'msg' => 'Blog record fetched successfully',
+            'data' => $data
+        ]);
+        die;
+    }
+
+    // Fetch Logo & Background image from front page Detail records
+    public function getLogoBck()
+    {
+        $smslink = $this->connect_to_mysqlsms();
+        $stmt = $smslink->prepare("SELECT * FROM tbl_logo_bck");
 
         if (!$stmt->execute()) {
             echo json_encode([
@@ -750,6 +905,28 @@ switch ($method) {
 
     case 'logOut':
         $user_obj->logOut();
+        break;
+
+    case 'getAllMenu':
+        $user_obj->getAllMenu();
+        break;
+
+    case 'getSingleMenu':
+        $id = $_POST['id'];
+        $user_obj->getSingleMenu($id);
+        break;
+
+    case 'getAllSlider':
+        $user_obj->getAllSlider();
+        break;
+
+    case 'getSingleSlider':
+        $id = $_POST['id'];
+        $user_obj->getSingleSlider($id);
+        break;
+    
+    case 'getLogoBck':
+        $user_obj->getLogoBck();
         break;
 
     default:

@@ -223,9 +223,29 @@ body::before {
 
     /* body { padding-top: 10vh; } */
     .login-box {
-        width: 90%;
-        padding: 25px;
+        width: 100%;
+        padding: 30px;
+    	margin-left: 0px !important;
     }
+	
+    .input-glass {
+     width: 100%;
+     padding: 7px 20px;
+    }
+
+.btn-signin
+ {
+    padding: 8px;
+    margin-top: 10px;
+}
+.password-wrap i {
+    font-size: 12px;
+    right: 15px;
+    top: 35%;
+}
+.social-buttons button {
+    padding: 8px 0;
+}
 }
 
 .preloader {

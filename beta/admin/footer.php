@@ -1,13 +1,3 @@
-<!-- footer start -->
-<div class="footer border shadow">
-    <p>© <script>
-            document.write(new Date().getFullYear())
-        </script> RITIK KUMAR | All Rights Reserved | Personal Portfolio Website - Web Hosting By - <a href="https://trendtech.in/" target="_blank" style="color: #009e66; font-weight: 700;">Trend Tech</a></p>
-</div>
-<!-- footer end -->
-</div>
-<!-- main content end -->
-
 <script src="assets/js/jquery-3.6.0.min.js"></script>
 <script src="assets/js/jquery.overlayScrollbars.min.js"></script>
 <script src="assets/js/apexcharts.js"></script>
@@ -28,7 +18,7 @@
         $(".preloader").hide();
     }, 500);
 
-    $("#logOut").on("click", function(e) {
+    $("#logOut").on("click", function (e) {
         $.ajax({
             type: 'POST',
             url: '/API/adminApi.php',
@@ -37,13 +27,13 @@
                 method: 'logOut'
             }),
             contentType: "application/json",
-            beforeSend: function() {
+            beforeSend: function () {
                 $(".preloader").show();
             },
-            complete: function() {
+            complete: function () {
                 $(".preloader").hide();
             },
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
                 let status = response.status;
                 if (status == 1) {
@@ -53,13 +43,13 @@
                     alert("Something went wrong!");
                 }
             },
-            error: function() {
+            error: function () {
                 alert("Something went wrong!");
             }
         });
     });
 
-    $("#navClose").click(function() {
+    $("#navClose").click(function(){
         $(this).find("i").toggleClass("rotate-180");
     });
 </script>

@@ -11,7 +11,7 @@ toastr.options = {
     "hideEasing": "linear"
 };
 
-// Password Visibility Toggle
+// 1. Password Visibility Toggle
 const toggle = document.getElementById('togglePassword');
 const password = document.getElementById('password');
 
@@ -23,7 +23,6 @@ toggle.addEventListener('click', () => {
     toggle.classList.toggle('fa-eye');
 });
 
-// For Water eipples effect
 $(function () {
 
     if (typeof $.fn.ripples !== 'function') {
@@ -57,7 +56,6 @@ $(function () {
 
 });
 
-// Login function ajax
 $(document).ready(function () {
     $("#logIn").on("submit", function (e) {
         e.preventDefault();
@@ -65,7 +63,7 @@ $(document).ready(function () {
         formData.append("method", "logIn");
         $.ajax({
             type: 'POST',
-            url: '/Ritik Portfolio/API/adminApi.php',
+            url: '/API/adminApi.php',
             dataType: 'JSON',
             data: formData,
             processData: false,
@@ -86,8 +84,8 @@ $(document).ready(function () {
                         window.location.href = "dashboard.php";
                     }, 500);
                 } else {
-                    // alert("Incorrect Username or Password!");
                     toastr.error("Incorrect Username or Password!");
+                    // alert("Incorrect Username or Password!");
                 }
             },
             error: function () {

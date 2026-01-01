@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('Asia/Kolkata');
-include_once('connection/mysqlconnection.php');
+require_once('connection/mysqlconnection.php');
 $query1 = "SELECT * from basic_detail WHERE id='1'";
 $result1 = mysqli_query($conn, $query1);
 if (!$result1) {
@@ -107,6 +107,13 @@ $skills_data = mysqli_fetch_all($result7, MYSQLI_ASSOC);
 
         body::before {
             z-index: 1;
+        }
+        .content-description{
+            margin-bottom: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         /* .home-area{
             z-index: 5 !important;

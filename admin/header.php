@@ -16,10 +16,9 @@ if (empty($_SESSION['isLogin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-Panel</title>
     <!-- Favicons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="../img/pngwing.com (20).png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../img/pngwing.com (20).png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../img/pngwing.com (20).png">
-    <!-- <link rel="stylesheet" href="assets/css/all.min.css"> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicons/myLogo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicons/myLogo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicons/myLogo.png">
     <link rel="stylesheet" href="assets/css/OverlayScrollbars.min.css" />
     <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="assets/css/daterangepicker.css" />
@@ -27,6 +26,7 @@ if (empty($_SESSION['isLogin'])) {
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" id="primaryColor" href="assets/css/blue-color.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" id="rtlStyle" href="#">
     <style>
         .preloader {
@@ -101,6 +101,10 @@ if (empty($_SESSION['isLogin'])) {
                 transform: scale(1)
             }
         }
+
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 
@@ -123,25 +127,27 @@ if (empty($_SESSION['isLogin'])) {
             <div class="col-xxl-6 col-xl-5 col-4 d-flex align-items-center gap-20">
                 <div class="main-logo d-lg-block d-none">
                     <div class="logo-big">
-                        <a href="index.html">
-                            <img src="assets/images/logo-black.png" alt="Logo">
+                        <a href="https://myprofile.tech" target="_blank" class="d-flex align-items-center">
+                            <img src="../img/favicons/myLogo.png" alt="Logo" style="filter: brightness(0.5); width: 32px;">
+                            <span class="fs-4 ms-1" style="font-weight: 500; color: #009e66">MyPortfolio</span>
                         </a>
                     </div>
                     <div class="logo-small">
-                        <a href="index.html">
-                            <img src="assets/images/logo-small.png" alt="Logo">
+                        <a href="https://myprofile.tech" target="_blank">
+                            <img src="../img/favicons/myLogo.png" alt="Logo" style="filter: brightness(0.5); width: 35px;">
                         </a>
                     </div>
                 </div>
                 <div class="nav-close-btn">
-                    <button id="navClose"><i class="fa-solid fa-bars"></i></button>
+                    <button id="navClose"><i class="fa-solid fa-bars-staggered"></i></button>
                 </div>
-                <a href="#" target="_blank" class="btn btn-sm btn-primary site-view-btn"><i class="fa-solid fa-globe me-1"></i> <span>View Website</span></a>
+                <a href="https://myprofile.tech" target="_blank" class="btn btn-sm btn-primary site-view-btn"><i class="fa-solid fa-globe me-1"></i> <span>View Website</span></a>
             </div>
             <div class="col-4 d-lg-none">
                 <div class="mobile-logo">
-                    <a href="index.html">
-                        <img src="assets/images/logo-black.png" alt="Logo">
+                    <a href="https://myprofile.tech" target="_blank" class="d-flex align-items-center">
+                        <img src="../img/favicons/myLogo.png" alt="Logo" style="filter: brightness(0.5); width: 23px;">
+                        <span class="fs-6 ms-1" style="font-weight: 500; color: #009e66">MyPortfolio</span>
                     </a>
                 </div>
             </div>
@@ -339,25 +345,25 @@ if (empty($_SESSION['isLogin'])) {
                         <ul class="dropdown-menu profile-dropdown-menu">
                             <li>
                                 <div class="dropdown-txt text-center">
-                                    <p class="mb-0">Shaikh Abu Dardah</p>
+                                    <p class="mb-0">RITIK KUMAR</p>
                                     <span class="d-block">Web Developer</span>
                                     <div class="d-flex justify-content-center">
                                         <div class="form-check pt-3">
                                             <input class="form-check-input" type="checkbox" id="seeProfileAsSidebar">
-                                            <label class="form-check-label" for="seeProfileAsSidebar">See as sidebar</label>
+                                            <label class="form-check-label ps-1" for="seeProfileAsSidebar">See as sidebar</label>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             <li><a class="dropdown-item" href="view-profile.html"><span class="dropdown-icon"><i class="fa-regular fa-circle-user"></i></span> Profile</a></li>
-                            <li><a class="dropdown-item" href="chat.html"><span class="dropdown-icon"><i class="fa-regular fa-message-lines"></i></span> Message</a></li>
+                            <li><a class="dropdown-item" href="chat.html"><span class="dropdown-icon"><i class="fa-solid fa-envelope"></i></span> Message</a></li>
                             <li><a class="dropdown-item" href="task.html"><span class="dropdown-icon"><i class="fa-regular fa-calendar-check"></i></span> Taskboard</a></li>
                             <li><a class="dropdown-item" href="#"><span class="dropdown-icon"><i class="fa-regular fa-circle-question"></i></span> Help</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="edit-profile.html"><span class="dropdown-icon"><i class="fa-regular fa-gear"></i></span> Settings</a></li>
-                            <li><a class="dropdown-item" id="logOut" href="#"><span class="dropdown-icon"><i class="fa-regular fa-arrow-right-from-bracket"></i></span> Logout</a></li>
+                            <li><a class="dropdown-item" href="edit-profile.html"><span class="dropdown-icon"><i class="fa-solid fa-gear"></i></span> Settings</a></li>
+                            <li><a class="dropdown-item" id="logOut" href="#"><span class="dropdown-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></span> Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -409,12 +415,12 @@ if (empty($_SESSION['isLogin'])) {
     <!-- profile right sidebar end -->
 
     <div class="right-sidebar-btn d-lg-block d-none">
-        <button class="header-btn theme-settings-btn"><i class="fa-light fa-gear"></i></button>
+        <button class="header-btn theme-settings-btn btn-primary"><i class="fa-solid fa-gear"></i></button>
     </div>
 
     <!-- right sidebar start -->
     <div class="right-sidebar">
-        <button class="right-bar-close"><i class="fa-light fa-angle-right"></i></button>
+        <button class="right-bar-close"><i class="fa-solid fa-chevron-right"></i></button>
         <div class="sidebar-title">
             <h3>Layout Settings</h3>
         </div>
@@ -750,15 +756,15 @@ if (empty($_SESSION['isLogin'])) {
                     <a role="button" class="sidebar-link-group-title has-sub">Dashboard</a>
                     <ul class="sidebar-link-group">
                         <li class="sidebar-dropdown-item">
-                            <a href="index.html" class="sidebar-link active"><span class="nav-icon"><i class="fa-solid fa-table"></i></span> <span class="sidebar-txt">Tabular Dashboard</span></a>
+                            <a href="dashboard.php" class="sidebar-link"><span class="nav-icon"><i class="fa-solid fa-table"></i></span> <span class="sidebar-txt">Tabular Dashboard</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
-                            <a href="crm-dashboard.html" class="sidebar-link"><span class="nav-icon"><i class="fa-solid fa-chart-area"></i></span> <span class="sidebar-txt">Graphical Dashboard</span></a>
+                            <a href="graphical_dashboard.php" class="sidebar-link"><span class="nav-icon"><i class="fa-solid fa-chart-area"></i></span> <span class="sidebar-txt">Graphical Dashboard</span></a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="sidebar-item">
+                <!-- <li class="sidebar-item">
                     <a role="button" class="sidebar-link-group-title has-sub">Apps</a>
                     <ul class="sidebar-link-group">
                         <li class="sidebar-dropdown-item">
@@ -815,7 +821,7 @@ if (empty($_SESSION['isLogin'])) {
                             <a href="contact.html" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-user-plus"></i></span> <span class="sidebar-txt">Contacts</span></a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
                 <li class="sidebar-item">
                     <a role="button" class="sidebar-link-group-title has-sub">Pages</a>
@@ -824,37 +830,37 @@ if (empty($_SESSION['isLogin'])) {
                             <a href="frontpage.php" class="sidebar-link"><span class="nav-icon"><i class="fa-solid fa-layer-group"></i></span> <span class="sidebar-txt">Front Page</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
-                            <a href="form.php" class="sidebar-link"><span class="nav-icon"><i class="fa-regular fa-folder"></i></span> <span class="sidebar-txt">Resume</span></a>
+                            <a href="resume.php" class="sidebar-link"><span class="nav-icon"><i class="fa-regular fa-folder"></i></span> <span class="sidebar-txt">Resume</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
-                            <a href="utility.html" class="sidebar-link"><span class="nav-icon"><i class="fa-regular fa-address-card"></i></span> <span class="sidebar-txt">About</span></a>
+                            <a href="about.php" class="sidebar-link"><span class="nav-icon"><i class="fa-regular fa-address-card"></i></span> <span class="sidebar-txt">About</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
-                            <a href="utility.html" class="sidebar-link"><span class="nav-icon"><i class="fa-brands fa-stack-exchange"></i></span> <span class="sidebar-txt">Project</span></a>
+                            <a href="project.php" class="sidebar-link"><span class="nav-icon"><i class="fa-brands fa-stack-exchange"></i></span> <span class="sidebar-txt">Project</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
-                            <a href="utility.html" class="sidebar-link"><span class="nav-icon"><i class="fa-solid fa-blog"></i></span> <span class="sidebar-txt">Blog</span></a>
+                            <a href="blogs.php" class="sidebar-link"><span class="nav-icon"><i class="fa-solid fa-blog"></i></span> <span class="sidebar-txt">Blog</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
-                            <a href="utility.html" class="sidebar-link"><span class="nav-icon"><i class="fa-solid fa-circle-user"></i></span> <span class="sidebar-txt">Contact</span></a>
+                            <a href="contact.php" class="sidebar-link"><span class="nav-icon"><i class="fa-solid fa-circle-user"></i></span> <span class="sidebar-txt">Contact Us</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
-                            <a href="utility.html" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-layer-group"></i></span> <span class="sidebar-txt">Utility</span></a>
+                            <a href="utility.php" class="sidebar-link"><span class="nav-icon"><i class="fa-solid fa-layer-group"></i></span> <span class="sidebar-txt">Utility</span></a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="sidebar-item">
+                <!-- <li class="sidebar-item">
                     <a role="button" class="sidebar-link-group-title has-sub">Components</a>
                     <ul class="sidebar-link-group">
                         <li class="sidebar-dropdown-item">
                             <a href="form.php" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-memo-pad"></i></span> <span class="sidebar-txt">Forms</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
-                            <a href="table.html" class="sidebar-link"><span class="nav-icon"><i class="fa-regular fa-folder"></i></span> <span class="sidebar-txt">Resume</span></a>
+                            <a href="resume.php" class="sidebar-link"><span class="nav-icon"><i class="fa-regular fa-folder"></i></span> <span class="sidebar-txt">Resume</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
-                            <a href="charts.html" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-chart-simple"></i></span> <span class="sidebar-txt">Experiences</span></a>
+                            <a href="blogs.php" class="sidebar-link"><span class="nav-icon"><i class="fa-solid fa-blog"></i></span> <span class="sidebar-txt">Blogs</span></a>
                         </li>
                         <li class="sidebar-dropdown-item">
                             <a href="icon.html" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-compass-drafting"></i></span> <span class="sidebar-txt">Skills</span></a>
@@ -866,12 +872,12 @@ if (empty($_SESSION['isLogin'])) {
                             <a href="file-manager.html" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-folder-open"></i></span> <span class="sidebar-txt">File Manager</span></a>
                         </li>
                     </ul>
-                </li>
-                <li class="help-center">
+                </li> -->
+                <!-- <li class="help-center">
                     <h3>Help Center</h3>
                     <p>We're an award-winning, forward thinking</p>
                     <a href="#" class="btn btn-sm btn-light">Go to Help Center</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>

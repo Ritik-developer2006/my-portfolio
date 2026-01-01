@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 
 require_once(__DIR__ . '../../config/env.php');
-loadEnv(__DIR__ . '../../.env');
+loadEnv(__DIR__ . '/../.env');
 
 abstract class mySQL
 {
@@ -44,7 +44,7 @@ abstract class mySQL
 class Tested extends mySQL {}
 
 $connection = new Tested();
-$conn = $connection->connect(getenv('DB_HOST'), getenv('DB_USERNAME'), '', getenv('DB_NAME'));
+$conn = $connection->connect(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_NAME'));
 // if($con_src){
 //     print_r("connection successfully");
 // }
