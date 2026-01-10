@@ -3,6 +3,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 header('content-type:application/json;charset=utf-8');
+require_once __DIR__ . '/websocketNotify.php';
 include_once('../connection/mysqlconnection.php');
 include_once('sendEmailApi.php');
 // $mthod = (isset($_POST['method']) && $_POST['method'] != '') ? $_POST['method'] : '';
@@ -66,6 +67,13 @@ class UserApi
 
         if ($stmt->execute()) {
             mysqli_commit($smslink);
+
+            // Call websocket
+            sendWebSocket([
+                'type' => 'new_mail',
+                'name' => $full_name,
+                'email' => $email,
+            ]);
         } else {
             mysqli_rollback($smslink);
             echo json_encode(['status' => 0, 'msg' => 'Database insert failed']);
@@ -117,6 +125,13 @@ class UserApi
         if ($stmt->execute()) {
             mysqli_commit($smslink);
             $arr = ['status' => 1, 'msg' => 'Email sent successfully'];
+
+            // Call websocket
+            sendWebSocket([
+                'type' => 'new_feedback',
+                'name' => $full_name,
+                'email' => $email,
+            ]);
         } else {
             mysqli_rollback($smslink);
             $arr = ['status' => 0, 'msg' => 'Database insert failed'];

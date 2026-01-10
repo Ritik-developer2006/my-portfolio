@@ -77,14 +77,32 @@
     });
 
     // For dark-light mode theme icon toggle
-    $("#darkTheme, #lightTheme").click(function(){
+    $("#darkTheme, #lightTheme").click(function() {
         $("#darkTheme").toggleClass("d-none");
         $("#lightTheme").toggleClass("d-none");
     });
 </script>
-<!-- for demo purpose -->
-</body>
 
-<!-- Mirrored from digiboard-html.codebasket.xyz/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Dec 2025 15:46:47 GMT -->
+<!-- for web socket -->
+<script>
+    $(document).ready(function() {
+        var conn = new WebSocket('ws://localhost:8080');
+
+        conn.onopen = function() {
+            console.log("Connected to WebSocket server");
+        };
+
+        conn.onmessage = function(e) {
+            // Parse JSON message
+            let data = JSON.parse(e.data);
+            if (data.type === 'new_mail') {
+                toastr.info(`${data.name} sent a mail`, "New Mail");
+            } else if (data.type === 'new_feedback') {
+                toastr.info(`${data.name} submitted feedback`, "New Feedback");
+            }
+        };
+    });
+</script>
+</body>
 
 </html>
